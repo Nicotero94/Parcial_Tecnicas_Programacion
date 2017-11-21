@@ -1,4 +1,3 @@
-
 def convertirMapaAMapaBooleano(mapa):
 
     mapaBooleano = []
@@ -8,7 +7,7 @@ def convertirMapaAMapaBooleano(mapa):
         filaBooleana = []
 
         for letra in linea:
-            if (letra == "b"):
+            if letra == "b":
                 filaBooleana.append(True)
             elif letra == '.':
                 filaBooleana.append(False)
@@ -38,38 +37,47 @@ def batallaDeBotes(mapa,disparos):
     if soloTieneEspacios == False:
         return botesNoHundidos
 
-
     mapaDeBooleanos = convertirMapaAMapaBooleano(mapa)
 
+    for fila in mapaDeBooleanos:
+
+        if fila == mapaDeBooleanos[0]:
+
+            filaNumero0 = mapaDeBooleanos[0]
+
+        elif fila == mapaDeBooleanos[1]:
+            filaNumero1 = mapaDeBooleanos[1]
+
+        elif fila == mapaDeBooleanos[2]:
+            filaNumero2 = mapaDeBooleanos[2]
+
+        elif fila == mapaDeBooleanos[3]:
+            filaNumero3 = mapaDeBooleanos[3]
+
     for disparo in disparos:
-        print(disparo)
 
+        botesHundidos = []
 
-    botesNoHundidos.append("LALALA")
+        if disparo[0] == 1:
+            if disparo[1] == 1:
+                tiro = True
+                if filaNumero0[0] == tiro:
+                    botesHundidos.append(disparo)
+
 
 
     return botesNoHundidos
-
-
-
-
-
-
-
-
-
 
 def ejercicio2(var1,var2):
     return batallaDeBotes(var1,var2)
 
 posicionesDeDisparosDePrueba = [(1,1),(3,4),(1,3),(4,5)]
-"""
-assert (ejercicio2([],posicionesDeDisparosDePrueba) == [])
-assert (ejercicio2([""],posicionesDeDisparosDePrueba) == [])
-assert (ejercicio2(["      "],posicionesDeDisparosDePrueba) == [])
-assert (ejercicio2(["soy NO valido"],posicionesDeDisparosDePrueba) == [])
-assert (ejercicio2(["yo","tambien","soy","invalido"],posicionesDeDisparosDePrueba) == [])
-assert (ejercicio2(["b.b.","....","..bb","b.b"],posicionesDeDisparosDePrueba) == [])
-"""
+
+#assert (ejercicio2([],posicionesDeDisparosDePrueba) == [])
+#assert (ejercicio2([""],posicionesDeDisparosDePrueba) == [])
+#assert (ejercicio2(["      "],posicionesDeDisparosDePrueba) == [])
+#assert (ejercicio2(["soy NO valido"],posicionesDeDisparosDePrueba) == [])
+#assert (ejercicio2(["yo","tambien","soy","invalido"],posicionesDeDisparosDePrueba) == [])
+#assert (ejercicio2(["b.b.","....","..bb","b.b"],posicionesDeDisparosDePrueba) == [])
 assert (ejercicio2(["b.b..","b...b",".....","....b"],posicionesDeDisparosDePrueba) == [(2,1),(2,5)])
 #assert (ejercicio2(["b..","...","..b"],[]) == [(1,1),(3,3)])

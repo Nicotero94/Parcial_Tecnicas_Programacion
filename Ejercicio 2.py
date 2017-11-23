@@ -41,33 +41,41 @@ def batallaDeBotes(mapa,disparos):
 
     for fila in mapaDeBooleanos:
 
-        if fila == mapaDeBooleanos[0]:
+        posicionesDeBotes = []
+        sobras = []
 
-            filaNumero0 = mapaDeBooleanos[0]
+        for bote in fila:
 
-        elif fila == mapaDeBooleanos[1]:
-            filaNumero1 = mapaDeBooleanos[1]
+            if bote == True:
 
-        elif fila == mapaDeBooleanos[2]:
-            filaNumero2 = mapaDeBooleanos[2]
+                suFila = mapaDeBooleanos.index(fila)
+                suColumna = 5
 
-        elif fila == mapaDeBooleanos[3]:
-            filaNumero3 = mapaDeBooleanos[3]
+                bote = (suFila,suColumna)
 
-    for disparo in disparos:
+                posicionesDeBotes.append(bote)
 
-        botesHundidos = []
-
-        if disparo[0] == 1:
-            if disparo[1] == 1:
-                tiro = True
-                if filaNumero0[0] == tiro:
-                    botesHundidos.append(disparo)
-
+            elif bote == False:
+                sobras.append(bote)
 
 
     return botesNoHundidos
 
+"""
+
+    for disparo in disparos:
+
+        botesHundidos = []
+        fila, columna = disparo
+
+        if fila == 1:
+            if columna == 1:
+                tiro = True
+                if filaNumero0[0] == tiro:
+                    botesHundidos.append(disparo)
+
+    return botesNoHundidos
+"""
 def ejercicio2(var1,var2):
     return batallaDeBotes(var1,var2)
 

@@ -63,8 +63,11 @@ def batallaDeBotes(mapa,disparos):
 
     for disparo in disparos:
 
-        print("")
+        posicionesDeDisparo = []
 
+        fila, columna = disparo
+        menos = (fila - 1, columna - 1)
+        posicionesDeDisparo.append(menos)
 
 
 

@@ -1,11 +1,14 @@
-
 def devolverEquipoMaximoPuntaje(puntajes):
 
+    tablaDePosiciones = puntajes
 
+    puntajeAlto = max(tablaDePosiciones.values())
 
-    tablaDePosiciones = puntajes.items()
+    for clave, valor in tablaDePosiciones.items():
 
-    for i in tablaDePosiciones:
+        if valor == puntajeAlto:
+
+            return clave
 
 
 def calculadorDelEquipoGanadorDeLaLiga(resultados):
@@ -23,20 +26,32 @@ def calculadorDelEquipoGanadorDeLaLiga(resultados):
 
     for partido in resultados:
 
+
         if (partido[GOLES_1] > partido[GOLES_2]):
 
             ganador = partido[EQUIPO_1]
             perdedor = partido[EQUIPO_2]
 
-            puntajes[ganador] = 2
-            puntajes[perdedor] = 0
+            puntoGanador = 2
+            puntoPerdedor = 0
+
+            puntuajeEnLaTabla = 0
+
+            puntajes[ganador] = puntuajeEnLaTabla + puntoGanador
+            puntajes[perdedor] = puntuajeEnLaTabla + puntoPerdedor
+
         elif (partido[GOLES_1] < partido[GOLES_2]):
 
             ganador = partido[EQUIPO_2]
             perdedor = partido[EQUIPO_1]
 
-            puntajes[ganador] = 2
-            puntajes[perdedor] = 0
+            puntoGanador = 2
+            puntoPerdedor = 0
+
+            puntuajeEnLaTabla = 0
+
+            puntajes[ganador] = puntuajeEnLaTabla + puntoGanador
+            puntajes[perdedor] = puntuajeEnLaTabla + puntoPerdedor
 
         else:
             puntajes[partido[EQUIPO_1]] = 1
@@ -53,7 +68,7 @@ def ejercicio3(var1):
 
 
 #assert (ejercicio3([]) == "")
-assert (ejercicio3([("a", 1, "b", 0)]) == "a")
-#assert (ejercicio3([("a", 1, "b", 0), ("a", 1, "c", 2), ("c", 3, "b", 0)]) == "c")
+#assert (ejercicio3([("a", 1, "b", 0)]) == "a")
+assert (ejercicio3([("a", 1, "b", 0), ("a", 1, "c", 2), ("c", 3, "b", 0)]) == "c")
 #assert (ejercicio3([("Boca", 1, "Belgrano", 1), ("Boca", 1, "Almagro", 1), ("Almagro", 1, "Belgrano", 1)]) == "Almagro")
 #assert (ejercicio3([("a", 1, "b", -2), ("a", 1, "c", 1), ("c", 1, "b", 1), ("d", 1, "a", 9)]) == "a")

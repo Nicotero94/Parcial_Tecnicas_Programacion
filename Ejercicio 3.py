@@ -1,19 +1,17 @@
 def devolverEquipoMaximoPuntaje(puntajes):
 
-    tablaDePosiciones = puntajes
+    equipoConPuntajeAlto = max(puntajes.values())
+    equipoGanadorAlfabeticamente = sorted(puntajes.keys())
 
-    puntajeAlto = max(tablaDePosiciones.values())
+    for equipo, puntos in puntajes.items():
 
-    for equipo, puntos in tablaDePosiciones.items():
-
-        if puntos == puntajeAlto:
-
-            return equipo
+        if puntos >= equipoConPuntajeAlto:
+                return equipo
 
 def calculadorDelEquipoGanadorDeLaLiga(resultados):
 
     if len(resultados) == 0:
-        return
+        return ''
 
     EQUIPO_1 = 0
     EQUIPO_2 = 2
@@ -98,12 +96,10 @@ def calculadorDelEquipoGanadorDeLaLiga(resultados):
                 puntajes[partido[EQUIPO_1]] = puntajeDelEquipo1 + 1
                 puntajes[partido[EQUIPO_2]] = puntajeDelEquipo2 + 1
 
-
     return devolverEquipoMaximoPuntaje(puntajes)
 
 def ejercicio3(var1):
     return calculadorDelEquipoGanadorDeLaLiga(var1)
-
 
 #assert (ejercicio3([]) == "")
 #assert (ejercicio3([("a", 1, "b", 0)]) == "a")

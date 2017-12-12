@@ -4,12 +4,11 @@ def devolverEquipoMaximoPuntaje(puntajes):
 
     puntajeAlto = max(tablaDePosiciones.values())
 
-    for clave, valor in tablaDePosiciones.items():
+    for equipo, puntos in tablaDePosiciones.items():
 
-        if valor == puntajeAlto:
+        if puntos == puntajeAlto:
 
-            return clave
-
+            return equipo
 
 def calculadorDelEquipoGanadorDeLaLiga(resultados):
 
@@ -26,42 +25,81 @@ def calculadorDelEquipoGanadorDeLaLiga(resultados):
 
     for partido in resultados:
 
-
         if (partido[GOLES_1] > partido[GOLES_2]):
-
             ganador = partido[EQUIPO_1]
             perdedor = partido[EQUIPO_2]
 
             puntoGanador = 2
             puntoPerdedor = 0
 
-            puntuajeEnLaTabla = 0
+            if len(puntajes) == 0:
+                puntajes[ganador] = puntoGanador
+                puntajes[perdedor] = puntoPerdedor
 
-            puntajes[ganador] = puntuajeEnLaTabla + puntoGanador
-            puntajes[perdedor] = puntuajeEnLaTabla + puntoPerdedor
+            elif len(puntajes) > 0:
+
+                if ganador not in puntajes:
+                    puntajeDelEquipoGanador = 0
+                else:
+                    puntajeDelEquipoGanador = puntajes.get(ganador)
+
+                if perdedor not in puntajes:
+                    puntajeDelEquipoPerdedor = 0
+                else:
+                    puntajeDelEquipoPerdedor = puntajes.get(perdedor)
+
+                puntajes[ganador] = puntajeDelEquipoGanador + puntoGanador
+                puntajes[perdedor] = puntajeDelEquipoPerdedor + puntoPerdedor
+
 
         elif (partido[GOLES_1] < partido[GOLES_2]):
-
             ganador = partido[EQUIPO_2]
             perdedor = partido[EQUIPO_1]
 
             puntoGanador = 2
             puntoPerdedor = 0
 
-            puntuajeEnLaTabla = 0
+            if len(puntajes) == 0:
+                puntajes[ganador] = puntoGanador
+                puntajes[perdedor] = puntoPerdedor
 
-            puntajes[ganador] = puntuajeEnLaTabla + puntoGanador
-            puntajes[perdedor] = puntuajeEnLaTabla + puntoPerdedor
+            elif len(puntajes) > 0:
+
+                if ganador not in puntajes:
+                    puntajeDelEquipoGanador = 0
+                else:
+                    puntajeDelEquipoGanador = puntajes.get(ganador)
+
+                if perdedor not in puntajes:
+                    puntajeDelEquipoPerdedor = 0
+                else:
+                    puntajeDelEquipoPerdedor = puntajes.get(perdedor)
+
+                puntajes[ganador] = puntajeDelEquipoGanador + puntoGanador
+                puntajes[perdedor] = puntajeDelEquipoPerdedor + puntoPerdedor
 
         else:
-            puntajes[partido[EQUIPO_1]] = 1
-            puntajes[partido[EQUIPO_2]] = 1
+            if len(puntajes) == 0:
+                puntajes[partido[EQUIPO_1]] = 1
+                puntajes[partido[EQUIPO_2]] = 1
 
+            elif len(puntajes) > 0:
 
+                if EQUIPO_1 not in puntajes:
+                    puntajeDelEquipo1 = 0
+                else:
+                    puntajeDelEquipo1 = puntajes.get(EQUIPO_1)
+
+                if EQUIPO_2 not in puntajes:
+                    puntajeDelEquipo2 = 0
+                else:
+                    puntajeDelEquipo2 = puntajes.get(EQUIPO_2)
+
+                puntajes[partido[EQUIPO_1]] = puntajeDelEquipo1 + 1
+                puntajes[partido[EQUIPO_2]] = puntajeDelEquipo2 + 1
 
 
     return devolverEquipoMaximoPuntaje(puntajes)
-
 
 def ejercicio3(var1):
     return calculadorDelEquipoGanadorDeLaLiga(var1)
@@ -69,6 +107,6 @@ def ejercicio3(var1):
 
 #assert (ejercicio3([]) == "")
 #assert (ejercicio3([("a", 1, "b", 0)]) == "a")
-assert (ejercicio3([("a", 1, "b", 0), ("a", 1, "c", 2), ("c", 3, "b", 0)]) == "c")
-#assert (ejercicio3([("Boca", 1, "Belgrano", 1), ("Boca", 1, "Almagro", 1), ("Almagro", 1, "Belgrano", 1)]) == "Almagro")
+#assert (ejercicio3([("a", 1, "b", 0), ("a", 1, "c", 2), ("c", 3, "b", 0)]) == "c")
+assert (ejercicio3([("Boca", 1, "Belgrano", 1), ("Boca", 1, "Almagro", 1), ("Almagro", 1, "Belgrano", 1)]) == "Almagro")
 #assert (ejercicio3([("a", 1, "b", -2), ("a", 1, "c", 1), ("c", 1, "b", 1), ("d", 1, "a", 9)]) == "a")

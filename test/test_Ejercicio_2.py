@@ -5,34 +5,34 @@ class Ejercicio2Test(unittest.TestCase):
 
     posicionesDeDisparosDePrueba = [(1, 1), (3, 4), (1, 3), (4, 5)]
 
-    def siReciboUnaListaVaciaDevuelvoUnaLista(self):
+    def test_siReciboUnaListaVaciaDevuelvoUnaListaVacia(self):
         resultado = Ejercicio2.batallaDeBotes([], self.posicionesDeDisparosDePrueba)
         self.assertEqual(resultado, [])
 
-    def siReciboUnaListaConUnStringVacioDevuelvoUnaListaVacia(self):
+    def test_siReciboUnaListaConUnStringVacioDevuelvoUnaListaVacia(self):
         resultado = Ejercicio2.batallaDeBotes([""], self.posicionesDeDisparosDePrueba)
         self.assertEqual(resultado, [])
 
-    def siReciboUnaListaConUnMapaInvalidosDevuelvoUnaListaVacia(self):
+    def test_siReciboUnaListaConUnMapaInvalidosDevuelvoUnaListaVacia(self):
         resultado = Ejercicio2.batallaDeBotes(["      "], self.posicionesDeDisparosDePrueba)
         self.assertEqual(resultado, [])
 
-    def siReciboUnaListaConUnMapaInvalidoDevuelvoUnaListaVacia(self):
+    def test_siReciboUnaListaConUnMapaInvalidoDevuelvoUnaListaVacia(self):
         resultado = Ejercicio2.batallaDeBotes(["soy NO valido"], self.posicionesDeDisparosDePrueba)
         self.assertEqual(resultado, [])
 
-    def siReciboUnaListaConUnMapaInvalidoDevuelvoUnaListaVacia(self):
+    def test_siReciboUnaListaConOtroMapaInvalidoDevuelvoUnaListaVacia(self):
         resultado = Ejercicio2.batallaDeBotes(["yo","tambien","soy","invalido"], self.posicionesDeDisparosDePrueba)
         self.assertEqual(resultado, [])
 
-    def siReciboUnaListaConUnMapaValidosPeroSusFilasNoSonIgualesDevuelvoUnaListaVacia(self):
+    def test_siReciboUnaListaConUnMapaValidoPeroSusFilasNoSonIgualesDevuelvoUnaListaVacia(self):
             resultado = Ejercicio2.batallaDeBotes(["b.b.","....","..bb","b.b"], self.posicionesDeDisparosDePrueba)
             self.assertEqual(resultado, [])
 
-    def siReciboUnaListaConUnMapaValidoUnaListaDeTuplasConPosicionesDeDisparoDevuelvoUnaListaDeTuplaConLasPosicionesDeLosBotesNoHundidos(self):
+    def test_siReciboUnaListaConUnMapaValidoUnaListaDeTuplasConPosicionesDeDisparoDevuelvoUnaListaDeTuplaConLasPosicionesDeLosBotesNoHundidos(self):
         resultado = Ejercicio2.batallaDeBotes(["b.b..","b...b",".....","....b"], self.posicionesDeDisparosDePrueba)
         self.assertEqual(resultado, [(2,1),(2,5)])
 
-    def siReciboUnaListaConUnMapaValidoSinPosicionesDeDDeDisparoDevuelvoUnaListaDeTuplasConLasPosicionesDeLosBotes(self):
-        resultado = Ejercicio2.batallaDeBotes(["b..","...","..b"], self.posicionesDeDisparosDePrueba)
+    def test_siReciboUnaListaConUnMapaValidoSinPosicionesDeDDeDisparoDevuelvoUnaListaDeTuplasConLasPosicionesDeLosBotes(self):
+        resultado = Ejercicio2.batallaDeBotes(["b..","...","..b"], [])
         self.assertEqual(resultado, [(1,1),(3,3)])
